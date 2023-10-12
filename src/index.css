@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+    font-family: 'Kumbh Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
+
+}

@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    // Output Code
+    "alwaysStrict": true,
+    "module": "ESNext", //Type of module generated
+    "target": "ESNext", //Set the JavaScript language version for emitted JavaScript 
+    "moduleResolution": "Node",// Specify the module resolution strategy:
+    "removeComments": true, //Remove comments from the genarated code
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+    "resolveJsonModule": true,  //Allow to import a file with a .json extension
+    "allowSyntheticDefaultImports": true,
+    /* Bundler mode */
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+  
+    // Type Checking
+    //  "types": ["bun-types"],
+  
+     /* Linting */
+    "allowUnreachableCode": false,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true
+  },
+  "include": ["src"],
+  // "references": [{ "path": "./tsconfig.node.json" }]
+}
