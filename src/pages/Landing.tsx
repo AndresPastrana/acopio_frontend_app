@@ -1,41 +1,30 @@
-import { Button } from "@tremor/react";
+import { Flex } from "@tremor/react";
+import { Slider } from "../components/Slider";
 import { Link } from "react-router-dom";
 const Landing = () => {
-	return (
-		<>
-			<h1>Landing</h1>
-			{/* Header   */}
-			<header>
-				{/* Navigation */}
-				<nav>
-					<span>Log</span>
-					<ul>
-						<li>Link</li>
-						<li>Link</li>
-						<li>Link</li>
-						<li>Link</li>
-						<li>Link</li>
-						<li>Link</li>
-					</ul>
-					<form action="">
-						<input type="search" />
-						<button type="button">Account</button>
-					</form>
-				</nav>
-				{/* Photo name inside assets/img/ */}
-				{/* <Slider images={["foto-1.jpg", "foto-2.jpg", "foto-3.jpg"]} /> */}
-			</header>
-
-			<main>
-				<div>Card 1</div>
-				<div>Card 2</div>
-				<div>Card 3</div>
-			</main>
-			<Button>
-				<Link to="login">Login</Link>
-			</Button>
-			<footer>Fotter here</footer>
-		</>
-	);
+  return (
+    <>
+      <header>
+        <Flex className="px-4 py-8">
+          <span>Logo</span>
+          <ul className="flex gap-2 [&>li>a]:text-gray-500 hover:[&>li>a]:text-gray-900 hover:[&>li>a]:transition hover:[&>li>a]:ease-in-out hover:[&>li>a]:delay-150">
+            <li>
+              <Link to="/login">Inicio</Link>
+            </li>
+            <li>
+              <a>Sistema de Acopio</a>
+            </li>
+            <li>
+              <a>Sobre Nosotros</a>
+            </li>
+            <li>
+              <a>Contactenos</a>
+            </li>
+          </ul>
+        </Flex>
+        <Slider images={["foto-1.jpg", "foto-3.jpg"]} />
+      </header>
+    </>
+  );
 };
 export default Landing;

@@ -1,35 +1,39 @@
-import { createContext, FC, useState } from "react";
+import { createContext, FC, useState, Dispatch, SetStateAction } from "react";
 
-type LogedUser = {
-	uid: string | null | undefined;
-	role: string | null | undefined;
-	access_token: string | null | undefined;
+export type LogedUser = {
+  uid: string | null | undefined;
+  role: string | null | undefined;
+  access_token: string | null | undefined;
+  iat: number | null | undefined;
+  exp: number | null | undefined;
 };
 const defaultUser: LogedUser = {
-	access_token: null,
-	role: null,
-	uid: null,
+  access_token: null,
+  role: null,
+  uid: null,
+  exp: null,
+  iat: null,
 };
 
 type ContextAuthType = {
-	user: LogedUser;
-	setUser: (user: LogedUser) => void;
+  user: LogedUser | null;
+  setUser: Dispatch<SetStateAction<LogedUser | null>>;
 };
 
 type Props = {
-	children: React.ReactNode;
+  children: React.ReactNode;
 };
 
 export const AuthContext = createContext<ContextAuthType>({
-	user: defaultUser,
-	setUser: () => {},
+  user: defaultUser,
+  setUser: () => {},
 });
 
 export const AuthProvider: FC<Props> = ({ children }) => {
-	const [user, setUser] = useState(defaultUser);
-	return (
-		<AuthContext.Provider value={{ user, setUser }}>
-			{children}
-		</AuthContext.Provider>
-	);
+  const [user, setUser] = useState<LogedUser | null>(null);
+  return (
+    <AuthContext.Provider value={{ user, setUser }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
