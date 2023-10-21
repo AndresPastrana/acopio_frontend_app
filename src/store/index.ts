@@ -1,2 +1,2 @@
 export { useSpecialistStore } from "./SpecialistStore";
-export { useWorkerStore } from "./WrokerStore";
+export { useAdminStore } from "./AdminStore";

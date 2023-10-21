@@ -1,5 +1,5 @@
 import { Flex } from "@tremor/react";
-import { Slider } from "../components/Slider";
+import { Slider } from "../components/common/index";
 import { Link } from "react-router-dom";
 const Landing = () => {
   return (

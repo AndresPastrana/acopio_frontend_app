@@ -1,3 +1,4 @@
+import { State } from "./types.d";
 export interface Commom {
   name: string;
 }
@@ -15,8 +16,13 @@ export type Month = keyof typeof Months;
 
 export type Province = Commom & {};
 
-export type State = Commom & {
-  province: string;
+export type State = {
+  id: string;
+  province: {
+    _id: string;
+    name: string;
+  };
+  name: string;
 };
 
 export type Route = Commom & { id: string };
@@ -24,37 +30,49 @@ export type Route = Commom & { id: string };
 export type Tank = Commom & { id: string } & Address & {
     capacity: number;
     state: string;
-    routes: [string];
+    routes: [Route];
+    state: State;
   };
 
 export type ProductiveBase = Commom & { id: string } & Address & {
-    state: string;
-    route: string;
+    route: {
+      _id: string;
+      name: string;
+    };
+    state: {
+      _id: string;
+      province: string;
+      name: string;
+    };
   };
 
 export type MonthContract = {
+  _id: string;
   month: Month;
   cant: number;
 };
 
 export type Producer = {
+  id: string;
   firstname: string;
   secondname?: string;
   surename: string;
   second_surename?: string;
   age: number;
-  phone_number: string;
   productive_base: string;
   ci: string;
   months_contracts?: Array<MonthContract>;
-  cant_animals?: number;
+  cant_animals: number;
 };
 
 export type Report = {
+  id: string;
   type_milk: MilkType.hot | MilkType.cold;
   dayli_collect: Number;
   producer: string;
   productive_base: string;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 export type User =
@@ -100,7 +118,16 @@ export enum ButtonSlider {
 // 2- CRUD of productive bases
 // 3- CRUD of Tanks
 // 4- CRUD of routes
-interface AdminState {
+
+interface CommonStore {
+  states: State[];
+}
+
+interface CommonActions {
+  setStates: (states: IState[]) => void;
+}
+
+interface AdminState extends CommonStore, CommonActions {
   specialists: Array<User>;
   tanks: Array<Tank>;
   routes: Array<Route>;
@@ -121,6 +148,20 @@ interface AdminState {
   setSpecialists: (payload: Array<User>) => void;
   setTanks: (payload: Array<Tank>) => void;
   setProductiveBases: (payload: Array<ProductiveBase>) => void;
+}
+interface SpecialistState extends CommonStore, CommonActions {
+  activeProductivebase: ProductiveBase | null;
+  producers: Producer[];
+  reports: Report[]; // Array of reports
+  setActiveProductivebase: (productiveBase: ProductiveBase) => void;
+  setProducers: (producers: Producer[]) => void;
+  setReports: (reports: Report[]) => void; // Set the reports array
+  addProducer: (producer: Producer) => void;
+  updateProducer: (payload: { id: string; data: Producer }) => void;
+  deleteProducer: (id: string) => void;
+  addReport: (report: Report) => void; // Add a new report
+  updateReport: (payload: { id: string; data: Report }) => void; // Update a report
+  deleteReport: (id: string) => void; // Delete a report
 }
 
 //************************ */ Specialist Actions and State types

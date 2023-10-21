@@ -1,21 +1,48 @@
 import { Link, Outlet } from "react-router-dom";
-import Dashboard from "../components/Dashboard";
+import { Dashboard, Header, Logout } from "../components/common/index";
+import { ButtonFactory } from "../components/ui";
+
 const Admin = () => {
-	return (
-		<div>
-			<h1>Admin Page</h1>
-			{/* Dashboard */}
-			<h2>Dashborad</h2>
-			<Dashboard>
-				<Link to="user">Users</Link>
-				<Link to="prodcutive-base">Productive Bases</Link>
-				<Link to="route">Route</Link>
-				<Link to="tank">Tanks</Link>
-			</Dashboard>
-			<Outlet />
-			{/* Children Here */}
-		</div>
-	);
+  return (
+    <div className="h-screen flex flex-col">
+      <Header />
+      <section className="basis-11/12 flex ">
+        {/* Dashboard */}
+        <Dashboard>
+          <Link to="routes">
+            <ButtonFactory text="Rutas" variant="light" color="neutral" />
+          </Link>
+          <Link to="tanks">
+            <ButtonFactory text="Tanques" variant="light" color="neutral" />
+          </Link>
+
+          <Link to="prodcutive-bases">
+            <ButtonFactory
+              text="Bases Productivas"
+              variant="light"
+              color="neutral"
+            />
+          </Link>
+          <Link to="users">
+            <ButtonFactory
+              text="Especialistas"
+              variant="light"
+              color="neutral"
+            />
+          </Link>
+          <Logout
+            className="justify-start font-extralight mt-8"
+            color="neutral"
+            size="xs"
+          />
+        </Dashboard>
+        {/* Panel View */}
+        <div className="basis-9/12">
+          <Outlet />
+        </div>
+      </section>
+    </div>
+  );
 };
 
 export default Admin;
