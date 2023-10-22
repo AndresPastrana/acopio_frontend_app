@@ -1,7 +1,7 @@
 import { toast } from "sonner";
 import { ProductiveBaseService } from "../services";
 import { useAdminStore } from "../store";
-import { ProductiveBase } from "../types";
+import { ProductiveBaseFormData } from "../types";
 import useAuth from "./useAuth";
 
 export const useProductiveBase = () => {
@@ -46,7 +46,9 @@ export const useProductiveBase = () => {
     }
   };
 
-  const insertProductiveBaseAPI = async (productiveBase: ProductiveBase) => {
+  const insertProductiveBaseAPI = async (
+    productiveBase: ProductiveBaseFormData
+  ) => {
     try {
       const newProductiveBase =
         await ProductiveBaseService.createNewProductiveBase(productiveBase, {
@@ -64,7 +66,9 @@ export const useProductiveBase = () => {
     }
   };
 
-  const editProductiveBaseAPI = async (productiveBase: ProductiveBase) => {
+  const editProductiveBaseAPI = async (
+    productiveBase: ProductiveBaseFormData
+  ) => {
     try {
       const updatedProductiveBase =
         await ProductiveBaseService.updateProductiveBase(productiveBase, {

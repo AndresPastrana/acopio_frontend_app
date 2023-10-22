@@ -1,18 +1,23 @@
 import axios from "axios";
 import { AxiosRequestConfig } from "axios";
 import { getURL } from "../helper";
-import { ProductiveBase, ServerResponse } from "../types";
+import {
+  ProductiveBase,
+  ProductiveBaseFormData,
+  ServerResponse,
+} from "../types";
 
-const urlbase = getURL(["PRODUCTIVE_BASE"]);
+const urlbase = getURL(["SERVER", "PRODUCTIVE_BASE"]);
 
 const createNewProductiveBase = async (
-  productiveBase: Omit<ProductiveBase, "id">,
+  productiveBase: ProductiveBaseFormData,
   options: AxiosRequestConfig
 ) => {
   try {
+    const { id = null, ...data } = productiveBase;
     const res = await axios.post<ServerResponse & { data: ProductiveBase }>(
       urlbase,
-      productiveBase,
+      data,
       { ...options }
     );
 
@@ -24,7 +29,7 @@ const createNewProductiveBase = async (
 };
 
 const updateProductiveBase = async (
-  productiveBase: ProductiveBase,
+  productiveBase: ProductiveBaseFormData,
   options: AxiosRequestConfig
 ) => {
   try {

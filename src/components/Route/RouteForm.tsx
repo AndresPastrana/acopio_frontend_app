@@ -1,12 +1,4 @@
-import {
-  TextInput,
-  Select,
-  SelectItem,
-  Callout,
-  NumberInput,
-  MultiSelect,
-  MultiSelectItem,
-} from "@tremor/react";
+import { TextInput, Callout } from "@tremor/react";
 import { ButtonFactory, Modal } from "../ui";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { Route } from "../../types";

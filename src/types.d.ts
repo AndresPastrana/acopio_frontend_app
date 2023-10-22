@@ -180,3 +180,11 @@ type TanksFormData = Pick<Tank, "id" | "address" | "capacity" | "name"> & {
   routes: Array<string>;
   state: string;
 };
+
+type ProductiveBaseFormData = Pick<
+  ProductiveBase,
+  "id" | "address" | "name"
+> & {
+  route: string;
+  state: string;
+};
