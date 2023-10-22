@@ -27,7 +27,7 @@ const createNewRoute = async (
 const updateRoute = async (route: Route, options: AxiosRequestConfig) => {
   try {
     const { id, ...data } = route;
-    const url = `${urlbase}/${id}`;
+    const url = `${urlbase}${id}`;
     const res = await axios.put<ServerResponse & { data: Route }>(url, data, {
       ...options,
     });
