@@ -1,19 +1,22 @@
 import axios from "axios";
 import { AxiosRequestConfig } from "axios";
 import { getURL } from "../helper";
-import { Tank, ServerResponse } from "../types";
+import { Tank, ServerResponse, TanksFormData } from "../types";
 
-const urlbase = getURL(["TANK"]);
+const urlbase = getURL(["SERVER", "TANK"]);
 
 const createNewTank = async (
-  tank: Omit<Tank, "id">,
+  tank: TanksFormData,
   options: AxiosRequestConfig
 ) => {
   try {
-    const url = `${urlbase}${getURL(["TANK_CREATE"])}`;
-    const res = await axios.post<ServerResponse & { data: Tank }>(url, tank, {
-      ...options,
-    });
+    const res = await axios.post<ServerResponse & { data: Tank }>(
+      urlbase,
+      tank,
+      {
+        ...options,
+      }
+    );
 
     return res.data.success ? res.data.data : null;
   } catch (error) {
@@ -22,10 +25,10 @@ const createNewTank = async (
   }
 };
 
-const updateTank = async (tank: Tank, options: AxiosRequestConfig) => {
+const updateTank = async (tank: TanksFormData, options: AxiosRequestConfig) => {
   try {
     const { id, ...data } = tank;
-    const url = `${urlbase}/${id}`;
+    const url = `${urlbase}${id}`;
     const res = await axios.put<ServerResponse & { data: Tank }>(url, data, {
       ...options,
     });
@@ -39,10 +42,12 @@ const updateTank = async (tank: Tank, options: AxiosRequestConfig) => {
 
 const getAllTanks = async (options: AxiosRequestConfig) => {
   try {
-    const url = `${urlbase}${getURL(["TANK_ALL"])}`;
-    const resp = await axios.get<ServerResponse & { data: Array<Tank> }>(url, {
-      ...options,
-    });
+    const resp = await axios.get<ServerResponse & { data: Array<Tank> }>(
+      urlbase,
+      {
+        ...options,
+      }
+    );
 
     return resp.data.success ? resp.data.data : null;
   } catch (error) {
@@ -67,7 +72,7 @@ const getTankById = async (tankId: string, options: AxiosRequestConfig) => {
 
 const deleteTankById = async (tankId: string, options: AxiosRequestConfig) => {
   try {
-    const url = `${urlbase}/${tankId}`;
+    const url = `${urlbase}${tankId}`;
     const res = await axios.delete<ServerResponse & { data: Tank }>(url, {
       ...options,
     });

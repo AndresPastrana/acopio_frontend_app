@@ -1,7 +1,8 @@
 import { lazy, Suspense } from "react";
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import { ProtectedRoute } from "../components/common/index";
 import { Role } from "../types.d";
+import { Tanks } from "../components";
 const AdminPage = lazy(() => import("../pages/Admin"));
 const LoginPage = lazy(() => import("../pages/Login"));
 const SpecialistPage = lazy(() => import("../pages/Specialist"));
@@ -56,7 +57,7 @@ export const router = createBrowserRouter([
       { path: "users", element: <h1>Users</h1> },
       { path: "prodcutive-bases", element: <h1>Productive Bases</h1> },
       { path: "routes", element: <h1>Route</h1> },
-      { path: "tanks", element: <h1>Tank</h1> },
+      { path: "tanks", element: <Tanks /> },
     ],
   },
 ]);

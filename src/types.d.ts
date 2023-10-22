@@ -29,9 +29,8 @@ export type Route = Commom & { id: string };
 
 export type Tank = Commom & { id: string } & Address & {
     capacity: number;
-    state: string;
-    routes: [Route];
-    state: State;
+    routes: [Pick<Route, "name"> & { _id: string }];
+    state: Pick<State, "name"> & { _id: string; province: string };
   };
 
 export type ProductiveBase = Commom & { id: string } & Address & {
@@ -136,17 +135,17 @@ interface AdminState extends CommonStore, CommonActions {
   addSpecialist: (specialist: User) => void;
   addTank: (tank: Tank) => void;
   addRoute: (route: Route) => void;
-  editSpecialist: (payload: { id: string; data: User }) => void;
-  editTank: (payload: { id: string; data: Tank }) => void;
-  editRoute: (payload: { id: string; data: Route }) => void;
-  editProductiveBase: (payload: { id: string; data: ProductiveBase }) => void;
+  editSpecialist: (data: User) => void;
+  editTank: (data: Tank) => void;
+  editRoute: (data: Route) => void;
+  editProductiveBase: (data: ProductiveBase) => void;
   removeSpecialist: (id: string) => void;
   removeTank: (id: string) => void;
   removeRoute: (id: string) => void;
   removeProductiveBase: (id: string) => void;
-  setRoutes: (payload: Array<Route>) => void;
-  setSpecialists: (payload: Array<User>) => void;
-  setTanks: (payload: Array<Tank>) => void;
+  setRoutes: (routes: Array<Route>) => void;
+  setSpecialists: (users: Array<User>) => void;
+  setTanks: (tanks: Array<Tank>) => void;
   setProductiveBases: (payload: Array<ProductiveBase>) => void;
 }
 interface SpecialistState extends CommonStore, CommonActions {
@@ -176,3 +175,8 @@ interface ServerResponse {
   data: any;
   error: any;
 }
+
+type TanksFormData = Pick<Tank, "id" | "address" | "capacity" | "name"> & {
+  routes: Array<string>;
+  state: string;
+};

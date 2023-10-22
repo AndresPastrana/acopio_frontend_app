@@ -1,4 +1,4 @@
-import { Button, Flex } from "@tremor/react";
+import { Flex } from "@tremor/react";
 import { useEffect, useRef, useState, FC } from "react";
 import { ButtonFactory } from "./Button";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -22,8 +22,8 @@ export const Modal: FC<Modal> = ({
   // Behavior when clsosing the modal
   const handleOnClose = () => {
     const modalHtml = modalRef.current;
-    onClose && onClose(); //Defined onCLose behavior
-    modalHtml?.close(); // Close the modal
+    onClose && onClose();
+    modalHtml?.close();
   };
   useEffect(() => {
     setisOpen(open);
@@ -38,7 +38,7 @@ export const Modal: FC<Modal> = ({
 
   return (
     <dialog
-      className="p-5 rounded-md w-[300px] min-h-[400px] overflow-hidden"
+      className="p-5 rounded-md w-[300px] min-h-[400px] overflow-hidden overflow-y-scroll"
       ref={modalRef}
     >
       {hasCloseBtn && (

@@ -9,11 +9,7 @@ export const useStates = () => {
   const loadStates = async () => {
     try {
       // We load by defualt the states of PR by now
-      const states = await StateService.getStatesByprovinceId({
-        params: {
-          provinceId: "6515db3395d07765b85524d8",
-        },
-      });
+      const states = await StateService.getStatesByprovinceId();
       if (states) {
         setStates(states);
       }

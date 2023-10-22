@@ -1,8 +1,8 @@
+import useAuth from "./useAuth";
 import { toast } from "sonner";
 import { TankService } from "../services/index";
 import { useAdminStore } from "../store";
-import useAuth from "./useAuth";
-import { Tank } from "../types";
+import { TanksFormData } from "../types";
 
 export const useTanks = () => {
   const { tanks, addTank, removeTank, setTanks, editTank } = useAdminStore(
@@ -32,7 +32,7 @@ export const useTanks = () => {
     }
   };
 
-  const insertTankAPI = async (tank: Tank) => {
+  const insertTankAPI = async (tank: TanksFormData) => {
     try {
       const newTank = await TankService.createNewTank(tank, {
         headers: {
@@ -49,7 +49,7 @@ export const useTanks = () => {
     }
   };
 
-  const editTankAPI = async (tank: Tank) => {
+  const editTankAPI = async (tank: TanksFormData) => {
     try {
       const updatedTank = await TankService.updateTank(tank, {
         headers: {
@@ -57,6 +57,10 @@ export const useTanks = () => {
         },
       });
       if (updatedTank) {
+        console.log("IN HOOK");
+
+        console.log(updatedTank);
+
         editTank(updatedTank);
         return toast.success(`Tank updated successfully`);
       }

@@ -5,9 +5,12 @@ import { State, ServerResponse } from "../types";
 const urlbase = getURL(["SERVER", "STATE"]);
 
 //Public endpoint
-const getStatesByprovinceId = async (options?: AxiosRequestConfig) => {
+const getStatesByprovinceId = async (
+  province_id: string = "6515db3395d07765b85524d8",
+  options?: AxiosRequestConfig
+) => {
   try {
-    const url = `${urlbase}`;
+    const url = `${urlbase}${province_id}`;
     const resp = await axios.get<ServerResponse & { data: Array<State> }>(url, {
       ...options,
     });
