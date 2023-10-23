@@ -3,15 +3,15 @@ import { AdminState } from "../types";
 
 // Create the Zustand store
 export const useAdminStore = create<AdminState>((set) => ({
-  specialists: [],
+  users: [],
   tanks: [],
   routes: [],
   productiveBases: [],
   states: [],
-  // Add your actual actions here
-  addSpecialist: (specialist) => {
+
+  addUser: (user) => {
     set((state) => ({
-      specialists: [...state.specialists, specialist],
+      users: [...state.users, user],
     }));
   },
 
@@ -33,24 +33,15 @@ export const useAdminStore = create<AdminState>((set) => ({
     }));
   },
 
-  editSpecialist: (payload) => {
+  editUser: (user) => {
     set((state) => ({
-      specialists: state.specialists.map((specialist) =>
-        specialist.id === payload.id ? payload : specialist
-      ),
+      users: state.users.map((u) => (u.id === user.id ? user : u)),
     }));
   },
 
   editTank: (payload) => {
-    console.log("Payload");
-    console.log(payload);
-
     set((state) => ({
       tanks: state.tanks.map((tank, index) => {
-        console.log(index);
-        console.log(tank);
-        console.log(tank.id === payload.id);
-
         return tank.id === payload.id ? payload : tank;
       }),
     }));
@@ -71,12 +62,9 @@ export const useAdminStore = create<AdminState>((set) => ({
       ),
     }));
   },
-
-  removeSpecialist: (id) => {
+  removeUser: (id) => {
     set((state) => ({
-      specialists: state.specialists.filter(
-        (specialist) => specialist.id !== id
-      ),
+      users: state.users.filter((u) => u.id !== id),
     }));
   },
 
@@ -106,9 +94,9 @@ export const useAdminStore = create<AdminState>((set) => ({
     }));
   },
 
-  setSpecialists: (specialists) => {
+  setUsers: (users) => {
     set(() => ({
-      specialists,
+      users,
     }));
   },
 

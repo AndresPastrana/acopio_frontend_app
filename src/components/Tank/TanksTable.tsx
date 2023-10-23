@@ -10,7 +10,7 @@ import {
 import { Tank } from "../../types";
 import { FC } from "react";
 import { ButtonFactory } from "../ui";
-import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { PencilIcon } from "@heroicons/react/24/outline";
 
 const THead = () => {
   const ths = ["Nombre", "Capacidad", "Address", "State", "Rutas"];

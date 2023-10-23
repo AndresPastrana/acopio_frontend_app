@@ -5,6 +5,7 @@ import { Role } from "../types.d";
 import { Tanks } from "../components";
 import { Routes } from "../components/Route/Route";
 import { ProductiveBase } from "../components/ProdcutiveBase/ProductiveBase";
+import Users from "../components/Users/Users";
 const AdminPage = lazy(() => import("../pages/Admin"));
 const LoginPage = lazy(() => import("../pages/Login"));
 const SpecialistPage = lazy(() => import("../pages/Specialist"));
@@ -56,7 +57,7 @@ export const router = createBrowserRouter([
       </Suspense>
     ),
     children: [
-      { path: "users", element: <h1>Users</h1> },
+      { path: "users", element: <Users /> },
       { path: "prodcutive-bases", element: <ProductiveBase /> },
       { path: "routes", element: <Routes /> },
       { path: "tanks", element: <Tanks /> },

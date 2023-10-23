@@ -76,21 +76,23 @@ export type Report = {
 
 export type User =
   | {
+      id: string;
       firstname: string;
       secondname?: string;
       surename: string;
       second_surename?: string;
       username: string;
       password: string;
-    } & { id: string } & (
-        | {
-            role: Role.Specialist;
-            productiveBaseInCharge: string;
-          }
-        | {
-            role: Role.Admin;
-          }
-      );
+    } & {
+      role: Role.Specialist;
+      productiveBaseInCharge: {
+        _id: string;
+        address: string;
+        name: string;
+        route: string | null | undefined;
+        state: string;
+      };
+    };
 
 export enum Routes {
   producers = "/producer",
@@ -127,24 +129,24 @@ interface CommonActions {
 }
 
 interface AdminState extends CommonStore, CommonActions {
-  specialists: Array<User>;
   tanks: Array<Tank>;
   routes: Array<Route>;
   productiveBases: Array<ProductiveBase>;
+  users: Array<User>;
   addProductiveBase: (productivebase: ProductiveBase) => void;
-  addSpecialist: (specialist: User) => void;
   addTank: (tank: Tank) => void;
   addRoute: (route: Route) => void;
-  editSpecialist: (data: User) => void;
+  addUser: (specialist: User) => void;
+  editUser: (data: User) => void;
+  setUsers: (users: Array<User>) => void;
+  removeUser: (id: string) => void;
   editTank: (data: Tank) => void;
   editRoute: (data: Route) => void;
   editProductiveBase: (data: ProductiveBase) => void;
-  removeSpecialist: (id: string) => void;
   removeTank: (id: string) => void;
   removeRoute: (id: string) => void;
   removeProductiveBase: (id: string) => void;
   setRoutes: (routes: Array<Route>) => void;
-  setSpecialists: (users: Array<User>) => void;
   setTanks: (tanks: Array<Tank>) => void;
   setProductiveBases: (payload: Array<ProductiveBase>) => void;
 }
@@ -187,4 +189,12 @@ type ProductiveBaseFormData = Pick<
 > & {
   route: string;
   state: string;
+};
+
+type UserFormData = Pick<
+  User,
+  "id" | "firstname" | "surename" | "username" | "role"
+> & {
+  password: string;
+  productiveBaseInCharge: string;
 };
