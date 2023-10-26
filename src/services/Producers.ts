@@ -1,11 +1,16 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { getURL } from "../helper";
-import { ServerResponse, Producer } from "../../src/types";
+import {
+  ServerResponse,
+  Producer,
+  ProducerFormData,
+  MonthContract,
+} from "../../src/types";
 // Use the VITE_PRODUCER environment variable
-const baseURL = getURL(["VITE_PRODUCER"]);
+const baseURL = getURL(["SERVER", "PRODUCER"]);
 
 const createNewProducer = async (
-  producer: Omit<Producer, "id">,
+  producer: ProducerFormData & { months_contracts: MonthContract[] },
   options: AxiosRequestConfig
 ) => {
   try {
@@ -17,13 +22,12 @@ const createNewProducer = async (
 
     return res.data.success ? res.data.data : null;
   } catch (error) {
-    console.log(error);
     throw new Error("Error while trying to insert a new producer");
   }
 };
 
 const updateProducer = async (
-  producer: Producer,
+  producer: ProducerFormData & { months_contracts: MonthContract[] },
   options: AxiosRequestConfig
 ) => {
   try {
@@ -44,10 +48,12 @@ const updateProducer = async (
   }
 };
 
-const getAllProducers = async (options: AxiosRequestConfig) => {
+// Get all or one producer(s) from a Productive Base
+// ?productiveBase=651efdc3710165dfd75b6780&id=all
+const getProducers = async (options: AxiosRequestConfig) => {
   try {
     const resp = await axios.get<ServerResponse & { data: Array<Producer> }>(
-      baseURL, // Use the base URL
+      baseURL,
       { ...options }
     );
 
@@ -55,23 +61,6 @@ const getAllProducers = async (options: AxiosRequestConfig) => {
   } catch (error) {
     console.log(error);
     throw new Error(`Error while getting all producers: ${error}`);
-  }
-};
-
-const getProducerById = async (
-  producerId: string,
-  options: AxiosRequestConfig
-) => {
-  try {
-    const url = `${baseURL}/${producerId}`;
-    const resp = await axios.get<ServerResponse & { data: Producer }>(url, {
-      ...options,
-    });
-
-    return resp.data.success ? resp.data.data : null;
-  } catch (error) {
-    console.log(error);
-    throw new Error(`Error while getting producer by ID: ${error}`);
   }
 };
 
@@ -95,7 +84,6 @@ const deleteProducerById = async (
 export const ProducerService = {
   createNewProducer,
   updateProducer,
-  getAllProducers,
-  getProducerById,
+  getProducers,
   deleteProducerById,
 };

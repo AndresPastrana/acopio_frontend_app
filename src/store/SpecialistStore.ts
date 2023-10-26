@@ -12,10 +12,10 @@ export const useSpecialistStore = create<SpecialistState>((set) => ({
   setReports: (reports) => set({ reports }),
   addProducer: (producer) =>
     set((state) => ({ producers: [...state.producers, producer] })),
-  updateProducer: ({ id, data }) =>
+  updateProducer: (data) =>
     set((state) => ({
       producers: state.producers.map((producer) =>
-        producer.id === id ? data : producer
+        producer.id === data.id ? data : producer
       ),
     })),
   deleteProducer: (id) =>

@@ -1,12 +1,13 @@
-import { Producer } from "./../types.d";
+import { MonthContract, Producer, ProducerFormData } from "./../types.d";
 import { toast } from "sonner";
 import { ProducerService } from "../services"; // Import your ProducerService
 import { useSpecialistStore } from "../store/index"; // Import your useSpecialistStore
 import useAuth from "./useAuth"; // Import your useAuth hook
+import { useProductiveBase } from "./useProductiveBase";
 
 const useProducers = () => {
   const { loggedUser } = useAuth();
-
+  const { activeProductivebase } = useProductiveBase();
   const {
     producers,
     setProducers,
@@ -29,9 +30,11 @@ const useProducers = () => {
     })
   );
 
+  // This functions recives the id of the producer
   const loadProducers = async () => {
     try {
-      const loadedProducers = await ProducerService.getAllProducers({
+      activeProductivebase;
+      const loadedProducers = await ProducerService.getProducers({
         headers: {
           Authorization: `Bearer ${loggedUser?.access_token}`,
         },
@@ -44,7 +47,9 @@ const useProducers = () => {
     }
   };
 
-  const insertProducerAPI = async (producer: Producer) => {
+  const insertProducerAPI = async (
+    producer: ProducerFormData & { months_contracts: MonthContract[] }
+  ) => {
     try {
       const newProducer = await ProducerService.createNewProducer(producer, {
         headers: {
@@ -64,7 +69,9 @@ const useProducers = () => {
     }
   };
 
-  const updateProducerAPI = async (producer: Producer) => {
+  const updateProducerAPI = async (
+    producer: ProducerFormData & { months_contracts: MonthContract[] }
+  ) => {
     try {
       const updatedProducer = await ProducerService.updateProducer(producer, {
         headers: {
@@ -94,12 +101,11 @@ const useProducers = () => {
           },
         }
       );
-      if (deletedProducer) {
-        deleteProducer(deletedProducer._id);
-        toast.success(
-          `Producer ${deletedProducer.firstname} deleted successfully`
-        );
-      }
+
+      deleteProducer(producerId);
+      toast.success(
+        `Producer ${deletedProducer.firstname} deleted successfully`
+      );
     } catch (error) {
       console.log(error);
     }

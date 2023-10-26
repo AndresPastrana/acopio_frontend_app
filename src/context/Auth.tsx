@@ -6,6 +6,7 @@ export type LogedUser = {
   access_token: string | null | undefined;
   iat: number | null | undefined;
   exp: number | null | undefined;
+  productiveBaseInCharge?: string | null | undefined;
 };
 const defaultUser: LogedUser = {
   access_token: null,

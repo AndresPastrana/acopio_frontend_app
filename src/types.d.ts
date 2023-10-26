@@ -46,7 +46,6 @@ export type ProductiveBase = Commom & { id: string } & Address & {
   };
 
 export type MonthContract = {
-  _id: string;
   month: Month;
   cant: number;
 };
@@ -60,7 +59,7 @@ export type Producer = {
   age: number;
   productive_base: string;
   ci: string;
-  months_contracts?: Array<MonthContract>;
+  months_contracts: Array<MonthContract>;
   cant_animals: number;
 };
 
@@ -114,11 +113,6 @@ export enum ButtonSlider {
   next = "next",
   prev = "prev",
 }
-//************************ */ Admin Actions and State types
-// 1- CRUD of specialist
-// 2- CRUD of productive bases
-// 3- CRUD of Tanks
-// 4- CRUD of routes
 
 interface CommonStore {
   states: State[];
@@ -158,7 +152,7 @@ interface SpecialistState extends CommonStore, CommonActions {
   setProducers: (producers: Producer[]) => void;
   setReports: (reports: Report[]) => void; // Set the reports array
   addProducer: (producer: Producer) => void;
-  updateProducer: (payload: { id: string; data: Producer }) => void;
+  updateProducer: (data: Producer) => void;
   deleteProducer: (id: string) => void;
   addReport: (report: Report) => void; // Add a new report
   updateReport: (payload: { id: string; data: Report }) => void; // Update a report
@@ -198,3 +192,8 @@ type UserFormData = Pick<
   password: string;
   productiveBaseInCharge: string;
 };
+
+type ProducerFormData = Pick<
+  Producer,
+  "ci" | "id" | "firstname" | "surename" | "cant_animals"
+>;

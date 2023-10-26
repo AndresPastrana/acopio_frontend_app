@@ -6,6 +6,8 @@ import { Tanks } from "../components";
 import { Routes } from "../components/Route/Route";
 import { ProductiveBase } from "../components/ProdcutiveBase/ProductiveBase";
 import Users from "../components/Users/Users";
+import Producers from "../components/Producers/Producers";
+import ProducerForm from "../components/Producers/ProducerForm";
 const AdminPage = lazy(() => import("../pages/Admin"));
 const LoginPage = lazy(() => import("../pages/Login"));
 const SpecialistPage = lazy(() => import("../pages/Specialist"));
@@ -29,7 +31,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/specialist",
+    path: "specialist",
     element: (
       <Suspense>
         <ProtectedRoute
@@ -40,9 +42,9 @@ export const router = createBrowserRouter([
       </Suspense>
     ),
     children: [
-      { path: "producers", element: <h1>Producers</h1> },
+      { path: "producers", element: <Producers /> },
       { path: "reports", element: <h1>Reports</h1> },
-      { path: "stadistics", element: <h1>Stadistics</h1> },
+      { path: "stadistics", element: <ProducerForm /> },
     ],
   },
   {

@@ -79,6 +79,7 @@ const getProductiveBaseById = async (
   }
 };
 
+// Get the info of a productive base of a user
 const deleteProductiveBaseById = async (
   productiveBaseId: string,
   options: AxiosRequestConfig

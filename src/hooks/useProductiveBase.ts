@@ -1,6 +1,7 @@
+import { LogedUser } from "./../context/Auth";
 import { toast } from "sonner";
 import { ProductiveBaseService } from "../services";
-import { useAdminStore } from "../store";
+import { useAdminStore, useSpecialistStore } from "../store";
 import { ProductiveBaseFormData } from "../types";
 import useAuth from "./useAuth";
 
@@ -27,6 +28,9 @@ export const useProductiveBase = () => {
     })
   );
 
+  const { activeProductivebase, setActiveProductivebase } =
+    useSpecialistStore();
+
   const { loggedUser } = useAuth();
 
   const loadProductiveBases = async () => {
@@ -46,6 +50,24 @@ export const useProductiveBase = () => {
     }
   };
 
+  const loadActiveProductiveBaseAPI = async () => {
+    try {
+      const pb = await ProductiveBaseService.getProductiveBaseById(
+        loggedUser?.productiveBaseInCharge || "",
+        {
+          headers: {
+            Authorization: `Bearer ${loggedUser?.access_token}`,
+          },
+        }
+      );
+      if (pb) {
+        return setActiveProductivebase(pb);
+      }
+      toast.error("Error getting active productive base");
+    } catch (error) {
+      toast.error("Error getting active productive base");
+    }
+  };
   const insertProductiveBaseAPI = async (
     productiveBase: ProductiveBaseFormData
   ) => {
@@ -105,10 +127,12 @@ export const useProductiveBase = () => {
   };
 
   return {
+    activeProductivebase,
     productiveBases,
     loadProductiveBases,
     insertProductiveBaseAPI,
     editProductiveBaseAPI,
     removeProductiveBaseAPI,
+    loadActiveProductiveBaseAPI,
   };
 };

@@ -1,9 +1,10 @@
 import { Flex } from "@tremor/react";
-import { useEffect, useRef, useState, FC } from "react";
+import { useEffect, useRef, useState, FC, ComponentPropsWithRef } from "react";
 import { ButtonFactory } from "./Button";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { ComponentPropsWithoutRef } from "react";
 
-interface Modal {
+interface Modal extends ComponentPropsWithoutRef<"dialog"> {
   open?: boolean;
   children: React.ReactNode;
   onClose?: () => void;
@@ -15,6 +16,7 @@ export const Modal: FC<Modal> = ({
   children,
   onClose = null,
   hasCloseBtn = true,
+  ...rest
 }) => {
   const modalRef = useRef<HTMLDialogElement | null>(null);
   const [isOpen, setisOpen] = useState(open);
@@ -40,6 +42,7 @@ export const Modal: FC<Modal> = ({
     <dialog
       className="p-5 rounded-md w-[300px] min-h-[400px] overflow-hidden overflow-y-scroll"
       ref={modalRef}
+      {...rest}
     >
       {hasCloseBtn && (
         <Flex flexDirection="col" alignItems="end" justifyContent="end">
