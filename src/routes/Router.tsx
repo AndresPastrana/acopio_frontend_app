@@ -8,6 +8,7 @@ import { ProductiveBase } from "../components/ProdcutiveBase/ProductiveBase";
 import Users from "../components/Users/Users";
 import Producers from "../components/Producers/Producers";
 import ProducerForm from "../components/Producers/ProducerForm";
+import Stadistics from "../components/Stadistics/Stadistics";
 const AdminPage = lazy(() => import("../pages/Admin"));
 const LoginPage = lazy(() => import("../pages/Login"));
 const SpecialistPage = lazy(() => import("../pages/Specialist"));
@@ -44,7 +45,7 @@ export const router = createBrowserRouter([
     children: [
       { path: "producers", element: <Producers /> },
       { path: "reports", element: <h1>Reports</h1> },
-      { path: "stadistics", element: <ProducerForm /> },
+      { path: "stadistics", element: <Stadistics /> },
     ],
   },
   {

@@ -81,9 +81,29 @@ const deleteProducerById = async (
   }
 };
 
+const getStadistics = async (month: string, options: AxiosRequestConfig) => {
+  try {
+    const url = `${baseURL}cumplidores/${month}`;
+
+    const resp = await axios.get<
+      ServerResponse & {
+        data: {
+          compliantWorkers: number;
+          nonCompliantWorkers: number;
+          totalProducers: number;
+        };
+      }
+    >(url, { ...options });
+
+    return resp.data.data ? resp.data.data : null;
+  } catch (error) {
+    throw new Error("Error while loading stadistics");
+  }
+};
 export const ProducerService = {
   createNewProducer,
   updateProducer,
   getProducers,
   deleteProducerById,
+  getStadistics,
 };
