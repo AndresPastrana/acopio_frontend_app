@@ -1,12 +1,12 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { getURL } from "../helper";
-import { Report } from "../types"; // Import your Report type
+import { Report, ReportFormData } from "../types"; // Import your Report type
 import { ServerResponse } from "../types"; // Import your ServerResponse type
 
 const urlbase = getURL(["SERVER", "REPORT"]);
 
 const createNewReport = async (
-  report: Omit<Report, "id">,
+  report: ReportFormData,
   options: AxiosRequestConfig
 ) => {
   try {

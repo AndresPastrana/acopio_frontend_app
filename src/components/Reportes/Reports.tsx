@@ -3,12 +3,21 @@ import useReports from "../../hooks/useReports";
 import { Flex, Select, SelectItem, TextInput, Title } from "@tremor/react";
 import { ReportsTable } from "./ReportsTable";
 import { utils, writeFile } from "xlsx";
-import { monthsContractsDefault } from "../../const";
+import { FormMode, monthsContractsDefault } from "../../const";
 import { ButtonFactory } from "../ui";
-import { DocumentArrowDownIcon } from "@heroicons/react/24/solid";
+import {
+  DocumentArrowDownIcon,
+  PlusCircleIcon,
+} from "@heroicons/react/24/solid";
+import { ReportForm } from "./ReportsForm";
+import { ReportFormData } from "../../types";
 
 const Reports = () => {
-  const { loadReports, reports } = useReports();
+  // State for handle if the modal is open or not
+  const [open, setOpen] = useState(false);
+  const [mode] = useState<FormMode>(FormMode.insert);
+
+  const { loadReports, reports, insertReportAPI } = useReports();
 
   const months = useMemo(() => {
     return monthsContractsDefault.map((c) => c.month);
@@ -47,6 +56,22 @@ const Reports = () => {
     writeFile(workbook, "Presidents.xlsx", {
       compression: true,
     });
+  };
+
+  const handleBtnAddNew = () => {
+    if (!open) {
+      setOpen(true);
+    }
+  };
+  const onModalClose = () => {
+    setOpen(false);
+  };
+  const handleSubmit = async (report: ReportFormData) => {
+    if (mode === FormMode.insert) {
+      return await insertReportAPI(report);
+    }
+
+    return;
   };
   useEffect(() => {
     loadReports();
@@ -123,11 +148,23 @@ const Reports = () => {
             text=""
             className="max-h-[34px]"
           />
+          <ButtonFactory
+            variant="primary"
+            icon={PlusCircleIcon}
+            onClick={handleBtnAddNew}
+            text=""
+            className="max-h-[34px]"
+          />
         </div>
       </Flex>
 
       <ReportsTable reports={filteredReports} />
-      {/* TODO ADD BUTTON TO GENERATE EXCEL HERE */}
+      <ReportForm
+        mode={mode}
+        onClose={onModalClose}
+        onSubmitAction={handleSubmit}
+        open={open}
+      />
     </div>
   );
 };

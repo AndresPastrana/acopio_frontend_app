@@ -66,7 +66,7 @@ export type Producer = {
 export type Report = {
   id: string;
   type_milk: MilkType.hot | MilkType.cold;
-  dayli_collect: Number;
+  dayli_collect: number;
   producer: {
     id: string;
     ci: string;
@@ -203,3 +203,7 @@ type ProducerFormData = Pick<
   Producer,
   "ci" | "id" | "firstname" | "surename" | "cant_animals"
 >;
+
+type ReportFormData = Pick<Report, "dayli_collect" | "type_milk"> & {
+  producer: string;
+};

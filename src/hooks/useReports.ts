@@ -1,4 +1,4 @@
-import { Report } from "./../types";
+import { Report, ReportFormData } from "./../types";
 import { toast } from "sonner";
 import { ReportService } from "../services";
 import { useSpecialistStore } from "../store/index";
@@ -33,7 +33,7 @@ const useReports = () => {
     }
   };
 
-  const insertReportAPI = async (report: Report) => {
+  const insertReportAPI = async (report: ReportFormData) => {
     try {
       const newReport = await ReportService.createNewReport(report, {
         headers: {
