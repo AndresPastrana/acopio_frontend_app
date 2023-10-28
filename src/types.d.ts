@@ -67,8 +67,14 @@ export type Report = {
   id: string;
   type_milk: MilkType.hot | MilkType.cold;
   dayli_collect: Number;
-  producer: string;
-  productive_base: string;
+  producer: {
+    id: string;
+    ci: string;
+    firstname: string;
+    surename: string;
+    cant_animals: number;
+  };
+
   createdAt: Date;
   updatedAt: Date;
 };

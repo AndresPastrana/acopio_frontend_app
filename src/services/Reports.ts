@@ -42,8 +42,9 @@ const updateReport = async (report: Report, options: AxiosRequestConfig) => {
 
 const getAllReports = async (options: AxiosRequestConfig) => {
   try {
+    const url = `${urlbase}by-productive-base`;
     const resp = await axios.get<ServerResponse & { data: Array<Report> }>(
-      urlbase,
+      url,
       {
         ...options,
       }

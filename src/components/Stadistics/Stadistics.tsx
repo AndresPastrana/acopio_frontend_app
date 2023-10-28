@@ -44,7 +44,9 @@ const Stadistics = () => {
         setstadistics({
           cumplidores: compliantWorkers,
           no_cumplidores:
-            nonCompliantWorkers + (totalProducers - compliantWorkers),
+            compliantWorkers + nonCompliantWorkers < totalProducers
+              ? totalProducers - (nonCompliantWorkers + nonCompliantWorkers)
+              : nonCompliantWorkers,
           total: totalProducers,
         });
       })
@@ -56,7 +58,7 @@ const Stadistics = () => {
   }, [month]);
 
   return (
-    <div>
+    <div className="pt-12">
       <Flex flexDirection="row" justifyContent="between" className="px-3">
         <Title>Cumplimento por mes</Title>
         <Select
