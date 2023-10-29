@@ -3,6 +3,7 @@ import { Dashboard, Header, Logout } from "../components/common/index";
 import { useProductiveBase } from "../hooks/useProductiveBase";
 import { useEffect } from "react";
 import ProductiveBaseInfo from "../components/ProdcutiveBase/ProductiveBaseInfo";
+import { ButtonFactory } from "../components/ui";
 
 const Specialist = () => {
   const { loadActiveProductiveBaseAPI, activeProductivebase } =
@@ -14,11 +15,22 @@ const Specialist = () => {
   return (
     <div className="h-screen flex flex-col">
       <Header />
-      <section className="basis-11/12 flex ">
+      <section className="basis-11/12 flex h-[70vh]">
         <Dashboard>
-          <Link to="producers">Productores</Link>
-          <Link to="reports">Partes</Link>
-          <Link to="stadistics">Cumplimmiento</Link>
+          <Link to="producers">
+            <ButtonFactory text="Productores" variant="light" color="neutral" />
+          </Link>
+
+          <Link to="reports">
+            <ButtonFactory text="Partes" variant="light" color="neutral" />
+          </Link>
+          <Link to="stadistics">
+            <ButtonFactory
+              text="Estadisticas"
+              variant="light"
+              color="neutral"
+            />
+          </Link>
 
           <Logout
             className="justify-start font-extralight mt-8"
@@ -26,7 +38,7 @@ const Specialist = () => {
             size="xs"
           />
         </Dashboard>
-        <div className="basis-9/12">
+        <div className="basis-9/12 h-full flex flex-col gap-3">
           <ProductiveBaseInfo
             data={{
               address: activeProductivebase?.address || "",

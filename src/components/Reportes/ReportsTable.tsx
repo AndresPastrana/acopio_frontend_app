@@ -17,7 +17,10 @@ const THead = () => {
     <TableHead>
       <TableRow>
         {ths.map((header) => (
-          <TableHeaderCell key={`thd-${header}`}>
+          <TableHeaderCell
+            className="bg-tremor-background"
+            key={`thd-${header}`}
+          >
             {header.toUpperCase()}
           </TableHeaderCell>
         ))}
@@ -53,7 +56,7 @@ const TBody: FC<TBodyProps> = ({ reports }) => {
 
 export const ReportsTable: FC<TBodyProps> = ({ reports = [] }) => {
   return (
-    <Table className="transition ease-in-out delay-1000">
+    <Table className="transition ease-in-out delay-1000 grow">
       <THead />
       <TBody reports={reports} />
     </Table>

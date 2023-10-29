@@ -109,8 +109,8 @@ const Reports = () => {
     return setfilteredReports(tempFilterList);
   }, [month, search]);
   return (
-    <div className="mt-6">
-      <Flex justifyContent="between" className="mt-10 mb-5 pr-2">
+    <>
+      <Flex justifyContent="between" className="px-4 mt-8">
         <Title>Reports </Title>
 
         <div className="flex gap-2 items-center">
@@ -165,7 +165,7 @@ const Reports = () => {
         onSubmitAction={handleSubmit}
         open={open}
       />
-    </div>
+    </>
   );
 };
 

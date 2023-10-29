@@ -26,10 +26,19 @@ const THead = () => {
     <TableHead>
       <TableRow>
         {ths.map((header) => (
-          <TableHeaderCell key={`thd-${header}`}>
+          <TableHeaderCell
+            className="bg-tremor-background"
+            key={`thd-${header}`}
+          >
             {header.toUpperCase()}
           </TableHeaderCell>
         ))}
+        <TableHeaderCell
+          className="bg-tremor-background text-center"
+          key={`thrr-actions`}
+        >
+          {"Actions".toUpperCase()}
+        </TableHeaderCell>
       </TableRow>
     </TableHead>
   );
@@ -108,7 +117,7 @@ export const ProducerTable: FC<TBodyProps> = ({
   hanldeEdit,
 }) => {
   return (
-    <Table>
+    <Table className="flex-grow">
       <THead />
       <TBody
         producers={producers}

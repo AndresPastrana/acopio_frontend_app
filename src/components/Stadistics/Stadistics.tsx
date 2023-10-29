@@ -58,7 +58,7 @@ const Stadistics = () => {
   }, [month]);
 
   return (
-    <div className="pt-12">
+    <div className="grow flex flex-col mt-8">
       <Flex flexDirection="row" justifyContent="between" className="px-3">
         <Title>Cumplimento por mes</Title>
         <Select
