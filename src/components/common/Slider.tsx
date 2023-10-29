@@ -1,5 +1,6 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
-import { Icon } from "@tremor/react";
+import { Icon, Title } from "@tremor/react";
+import { log } from "console";
 import { FC, useEffect, useState } from "react";
 // The slider componet will recive a list of images path
 type Props = { images: Array<string>; styles?: string };
@@ -29,7 +30,7 @@ export const Slider: FC<Props> = ({ images, styles }) => {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => handleNextSlider(ArrowAction.next), 3000);
+    const timer = setTimeout(() => handleNextSlider(ArrowAction.next), 8000);
 
     return () => {
       clearTimeout(timer);
@@ -38,25 +39,28 @@ export const Slider: FC<Props> = ({ images, styles }) => {
 
   return (
     <div
-      className={`w-full h-[400px] bg-[url('${currentImagePath}')] bg-center bg-cover relative`}
+      style={{
+        backgroundImage: `url(${currentImagePath})`,
+      }}
+      className={`w-full h-[600px] bg-center bg-cover relative transition-all ease-in-out delay-100`}
     >
       <Icon
         color="green"
-        className="absolute left-5 top-1/2"
+        className="absolute left-5 top-1/2 hover:cursor-pointer hover:text-green-800 transition-all ease-in-out delay-150"
         onClick={() => handleNextSlider(ArrowAction.prev)}
         icon={ChevronLeftIcon}
         variant="simple"
         size="md"
       />
-      <h1 className="text-green-500 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <h1 className="text-green-600 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-semibold">
         Acopio Pinar
       </h1>
-      <h2 className="text-green-500 absolute bottom-1/2 left-1/2 transform -translate-x-1/2 translate-y-20">
-        Sistema para la gestion de la leche en la ciudad de pinra del rio
+      <h2 className="text-green-600 absolute bottom-1/2 left-1/2 transform -translate-x-1/2 translate-y-20">
+        Sistema para la gestion de la leche en la ciudad de Pinar del Rio
       </h2>
 
       <Icon
-        className="absolute right-5 top-1/2"
+        className="absolute right-5 top-1/2 hover:cursor-pointer hover:text-green-800 transition-all ease-in-out delay-150"
         color="green"
         onClick={() => handleNextSlider(ArrowAction.next)}
         icon={ChevronRightIcon}
