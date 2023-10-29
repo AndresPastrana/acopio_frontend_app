@@ -5,27 +5,33 @@ interface Props extends ComponentPropsWithoutRef<"article"> {
   titule: string;
   image: string;
   text: string;
-  order_image?: number;
-  order_text?: number;
+  order_image?: string;
+  order_text?: string;
 }
 
 const Articule: FC<Props> = ({
   titule,
   text,
   image,
-  order_image = 2,
-  order_text = 1,
+  order_text = "1",
+  order_image = "2",
   ...rest
 }) => {
   return (
     <article className="flex p-5" {...rest}>
       <section
-        className={`basis-8/12 order-[${order_text}] flex flex-col justify-center`}
+        style={{
+          order: order_text,
+        }}
+        className={"basis-8/12 flex flex-col justify-center"}
       >
         <Title className="mb-3">{titule}</Title>
         <Text className="max-w-2xl">{text}</Text>
       </section>
       <section
+        style={{
+          order: order_image,
+        }}
         className={`basis-4/12 order-[${order_image}] h-[300px] mx-auto max-w-[350px]`}
       >
         <img

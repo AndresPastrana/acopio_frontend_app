@@ -3,10 +3,8 @@ import { Slider } from "../components/common/index";
 import { Link } from "react-router-dom";
 import Articule from "../components/common/Articule";
 import {
-  BuildingOffice2Icon,
   BuildingOfficeIcon,
   MapIcon,
-  PhoneArrowUpRightIcon,
   PhoneIcon,
 } from "@heroicons/react/24/solid";
 const Landing = () => {
@@ -63,8 +61,8 @@ const Landing = () => {
             text="La base productiva en el acopio de la leche se refiere a las instalaciones y recursos necesarios para llevar a cabo la recoleccion y almacenamiento de la leche. Incluye tambie los centros de acopio deonde se recibe y clasifican las diferentes entregas de leche"
             titule="Base Productiva"
             image="../../assets/img/base_productiva.jpg"
-            order_image={1}
-            order_text={2}
+            order_image="1"
+            order_text="2"
           />
           <Articule
             text="En el proceso de acopio de la leche un tanque se refiere a un recipiente o contenedor utilzado para almacenar y enfriar la leche recolectada de las fincas ganaderas. Suelen ser de acero inoxidable y estan disenadas para que la leche este en condiciones optimas de temperatura y conservacion"
