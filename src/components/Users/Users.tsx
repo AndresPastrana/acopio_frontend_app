@@ -70,7 +70,7 @@ const Users = () => {
   }, []);
 
   return (
-    <div>
+    <>
       {/* {JSON.stringify(users)} */}
       <UsersMenu onClcik={handleBtnAddNew} />
       <UserForm
@@ -86,7 +86,7 @@ const Users = () => {
         handleDelete={handldeDelete}
         hanldeEdit={handleBtnEdit}
       />
-    </div>
+    </>
   );
 };
 

@@ -19,10 +19,19 @@ const THead = () => {
     <TableHead>
       <TableRow>
         {ths.map((header) => (
-          <TableHeaderCell key={`thpb-${header}`}>
+          <TableHeaderCell
+            className="bg-tremor-background"
+            key={`thpb-${header}`}
+          >
             {header.toUpperCase()}
           </TableHeaderCell>
         ))}
+        <TableHeaderCell
+          className="bg-tremor-background text-center"
+          key={`thrr-actions`}
+        >
+          {"Actions".toUpperCase()}
+        </TableHeaderCell>
       </TableRow>
     </TableHead>
   );
@@ -81,7 +90,7 @@ export const ProductiveBasesTable: FC<TBodyProps> = ({
   hanldeEdit,
 }) => {
   return (
-    <Table>
+    <Table className="basis-10/12  w-full max-h-full mx-auto ">
       <THead />
       <TBody
         productiveBases={productiveBases}

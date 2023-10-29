@@ -19,10 +19,19 @@ const THead = () => {
     <TableHead>
       <TableRow>
         {ths.map((header) => (
-          <TableHeaderCell key={`thrr-${header}`}>
+          <TableHeaderCell
+            className="bg-tremor-background"
+            key={`thrr-${header}`}
+          >
             {header.toUpperCase()}
           </TableHeaderCell>
         ))}
+        <TableHeaderCell
+          className="bg-tremor-background text-right"
+          key={`thrr-actions`}
+        >
+          {"Actions".toUpperCase()}
+        </TableHeaderCell>
       </TableRow>
     </TableHead>
   );
@@ -43,7 +52,7 @@ const TBody: FC<TBodyProps> = ({ routes, hanldeEdit, handleDelete }) => {
             <TableCell>{name}</TableCell>
 
             <TableCell>
-              <Flex justifyContent="around" className="gap-3">
+              <Flex justifyContent="end" className="gap-10">
                 <ButtonFactory
                   onClick={() => hanldeEdit(id)}
                   icon={PencilIcon}
@@ -73,7 +82,7 @@ export const RoutesTable: FC<TBodyProps> = ({
   hanldeEdit,
 }) => {
   return (
-    <Table>
+    <Table className="basis-10/12  w-full max-h-full mx-auto ">
       <THead />
       <TBody
         routes={routes}

@@ -6,7 +6,7 @@ const Admin = () => {
   return (
     <div className="h-screen flex flex-col">
       <Header />
-      <section className="basis-11/12 flex ">
+      <section className="basis-11/12 flex h-[70vh]">
         {/* Dashboard */}
         <Dashboard>
           <Link to="routes">
@@ -37,7 +37,7 @@ const Admin = () => {
           />
         </Dashboard>
         {/* Panel View */}
-        <div className="basis-9/12">
+        <div className="basis-9/12 h-full flex flex-col gap-3">
           <Outlet />
         </div>
       </section>

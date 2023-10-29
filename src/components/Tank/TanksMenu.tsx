@@ -5,8 +5,8 @@ type Props = {
 };
 export const TanksMenu: FC<Props> = ({ onClcik }) => {
   return (
-    <div>
-      <h2>Tanuqes</h2>
+    <div className="basis-2/12 flex justify-between items-center px-3">
+      <h2>Tanques</h2>
       <menu>
         <ButtonFactory
           onClick={onClcik}

@@ -5,7 +5,7 @@ type Props = {
 };
 export const RouteMenu: FC<Props> = ({ onClick }) => {
   return (
-    <div>
+    <div className="basis-2/12 flex justify-between items-center px-3">
       <h2>Rutas</h2>
       <menu>
         <ButtonFactory

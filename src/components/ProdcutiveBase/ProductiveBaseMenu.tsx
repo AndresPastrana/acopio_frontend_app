@@ -6,12 +6,11 @@ type Props = {
 };
 export const ProductivBaseMenu: FC<Props> = ({ onClick }) => {
   return (
-    <div>
+    <div className="basis-2/12 flex justify-between items-center px-3">
       <h2>Productive Bases</h2>
       <menu>
         <ButtonFactory
           onClick={onClick}
-          className="mt-3"
           text="Agregar Base Productiva"
           variant="secondary"
         />

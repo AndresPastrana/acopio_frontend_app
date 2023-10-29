@@ -5,7 +5,7 @@ import { UserRole } from "../../const";
 export const Header = () => {
   const { loggedUser } = useAuth();
   return (
-    <header className="p-3 basis-1/12 flex justify-between items-center">
+    <header className="p-3 basis-1/12 flex justify-between items-center h-[30vh]">
       <section className="flex items-center gap-7">
         {/* <ButtonFactory
           color="neutral"

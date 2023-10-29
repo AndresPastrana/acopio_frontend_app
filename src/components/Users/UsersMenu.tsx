@@ -5,7 +5,7 @@ type Props = {
 };
 export const UsersMenu: FC<Props> = ({ onClcik }) => {
   return (
-    <div>
+    <div className="basis-2/12 flex justify-between items-center px-3">
       <h2>Users</h2>
       <menu>
         <ButtonFactory

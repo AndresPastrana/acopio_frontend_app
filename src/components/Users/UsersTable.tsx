@@ -19,10 +19,19 @@ const THead = () => {
     <TableHead>
       <TableRow>
         {ths.map((header) => (
-          <TableHeaderCell key={`thu-${header}`}>
+          <TableHeaderCell
+            className="bg-tremor-background"
+            key={`thu-${header}`}
+          >
             {header.toUpperCase()}
           </TableHeaderCell>
         ))}
+        <TableHeaderCell
+          className="bg-tremor-background text-center"
+          key={`thrr-actions`}
+        >
+          {"Actions".toUpperCase()}
+        </TableHeaderCell>
       </TableRow>
     </TableHead>
   );
@@ -90,7 +99,7 @@ export const UserTable: FC<TBodyProps> = ({
   hanldeEdit,
 }) => {
   return (
-    <Table>
+    <Table className="basis-10/12  w-full max-h-full mx-auto ">
       <THead />
       <TBody
         users={users}
