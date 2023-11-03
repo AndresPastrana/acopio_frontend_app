@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { ButtonProps, Button, Icon, IconProps } from "@tremor/react";
+import { ButtonProps, Button } from "@tremor/react";
 interface CustomBTN extends ButtonProps {
   text?: string;
   onClick?: () => void;

@@ -10,7 +10,7 @@ export const Dashboard: FC<Props> = ({ children }) => {
   return (
     <nav className="p-4 basis-3/12 h-full">
       <p className="text-md font-extralight mb-6">Dashboard</p>
-      <nav className="flex flex-col [&>a]:py-2">{children}</nav>
+      <menu className="flex flex-col [&>a]:py-2">{children}</menu>
     </nav>
   );
 };

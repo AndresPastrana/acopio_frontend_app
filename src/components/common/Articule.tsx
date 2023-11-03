@@ -25,8 +25,8 @@ const Articule: FC<Props> = ({
         }}
         className={"basis-8/12 flex flex-col justify-center"}
       >
-        <Title className="mb-3">{titule}</Title>
-        <Text className="max-w-2xl">{text}</Text>
+        <Title className="mb-3 text-[23px]">{titule}</Title>
+        <Text className="max-w-5xl text-[20px]">{text}</Text>
       </section>
       <section
         style={{
