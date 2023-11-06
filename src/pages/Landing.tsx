@@ -14,7 +14,7 @@ const Landing = () => {
         <Flex className="px-4 py-8">
           <span>
             <img
-              className="max-w-[100px]"
+              className="max-w-[100px] bg-opacity-20"
               src="../../assets/img/logo.jpg"
               alt="Primavera logo"
             />

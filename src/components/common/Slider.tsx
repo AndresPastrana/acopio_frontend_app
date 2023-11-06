@@ -40,28 +40,29 @@ export const Slider: FC<Props> = ({ images, styles }) => {
   return (
     <div
       style={{
-        backgroundImage: `url(${currentImagePath})`,
+        backgroundImage: ` linear-gradient(
+          rgba(35, 33, 33, 0.45), 
+          rgba(35, 33, 33, 0.45)
+        ),url(${currentImagePath})`,
       }}
       className={`w-full h-[600px] bg-center bg-cover relative transition-all ease-in-out delay-100`}
     >
       <Icon
-        color="green"
-        className="absolute left-5 top-1/2 hover:cursor-pointer hover:text-green-800 transition-all ease-in-out delay-150"
+        className="text-green-300 absolute left-5 top-1/2 hover:cursor-pointer hover:text-green-800 transition-all ease-in-out delay-150"
         onClick={() => handleNextSlider(ArrowAction.prev)}
         icon={ChevronLeftIcon}
         variant="simple"
         size="md"
       />
-      <h1 className="text-green-600 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-semibold">
+      <h1 className="text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-semibold">
         Acopio Pinar
       </h1>
-      <h2 className="text-green-600 absolute bottom-1/2 left-1/2 transform -translate-x-1/2 translate-y-20">
+      <h2 className="text-white absolute bottom-1/2 left-1/2 transform -translate-x-1/2 translate-y-20">
         Sistema para la gestion de la leche en la ciudad de Pinar del Rio
       </h2>
 
       <Icon
-        className="absolute right-5 top-1/2 hover:cursor-pointer hover:text-green-800 transition-all ease-in-out delay-150"
-        color="green"
+        className="text-green-300 absolute right-5 top-1/2 hover:cursor-pointer hover:text-green-800 transition-all ease-in-out delay-150"
         onClick={() => handleNextSlider(ArrowAction.next)}
         icon={ChevronRightIcon}
         variant="simple"
