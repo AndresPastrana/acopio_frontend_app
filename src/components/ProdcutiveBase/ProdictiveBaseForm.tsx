@@ -51,7 +51,6 @@ export const ProductiveBaseForm: FC<Props> = ({
 
   // On submit
   const onSubmit: SubmitHandler<ProductiveBaseFormData> = (data) => {
-    alert(JSON.stringify(data));
     onSubmitAction(data);
   };
   useEffect(() => {

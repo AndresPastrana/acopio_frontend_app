@@ -52,7 +52,6 @@ export const UserForm: FC<Props> = ({
 
   // On submit
   const onSubmit: SubmitHandler<UserFormData> = (data) => {
-    alert(JSON.stringify(data));
     onSubmitAction(data);
   };
 

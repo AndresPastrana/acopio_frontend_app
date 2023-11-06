@@ -62,7 +62,6 @@ export const TanksForm: FC<Props> = ({
 
   // On submit
   const onSubmit: SubmitHandler<TanksFormData> = (data) => {
-    alert(JSON.stringify(data));
     onSubmitAction(data);
   };
 

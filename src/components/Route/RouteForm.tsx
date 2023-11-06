@@ -44,7 +44,6 @@ export const RoutesFrom: FC<Props> = ({
 
   // On submit
   const onSubmit: SubmitHandler<Route> = (data) => {
-    alert(JSON.stringify(data));
     onSubmitAction(data);
   };
 
